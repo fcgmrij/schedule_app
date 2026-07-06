@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:16
+    container_name: schedule-db
+    environment:
+      POSTGRES_USER: schedule_user
+      POSTGRES_PASSWORD: schedule_pass
+      POSTGRES_DB: schedule_app
+    ports:
+      - "5432:5432"
+    volumes:
+      - schedule_db_data:/var/lib/postgresql/data
+  api:
+    build:
+      context: ./backend
+    container_name: schedule-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+volumes:
+  schedule_db_data:

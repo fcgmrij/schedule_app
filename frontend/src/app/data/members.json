@@ -1,0 +1,41 @@
+[
+  {
+    "id": "1",
+    "name": "田中",
+    "color": "#3b82f6",
+    "schedule": [
+      { "date": "2026-06-05", "available": true, "timeSlots": [{ "start": "14:00", "end": "22:00" }] },
+      { "date": "2026-06-06", "available": false },
+      { "date": "2026-06-07", "available": true, "timeSlots": [{ "start": "10:00", "end": "18:00" }] },
+      { "date": "2026-06-08", "available": true, "timeSlots": [{ "start": "12:00", "end": "22:00" }] },
+      { "date": "2026-06-12", "available": true, "timeSlots": [{ "start": "18:00", "end": "22:00" }] },
+      { "date": "2026-06-14", "available": true, "timeSlots": [{ "start": "10:00", "end": "22:00" }] }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "佐藤",
+    "color": "#ef4444",
+    "schedule": [
+      { "date": "2026-06-05", "available": true, "timeSlots": [{ "start": "10:00", "end": "16:00" }] },
+      { "date": "2026-06-06", "available": true, "timeSlots": [{ "start": "12:00", "end": "20:00" }] },
+      { "date": "2026-06-07", "available": false },
+      { "date": "2026-06-08", "available": true, "timeSlots": [{ "start": "10:00", "end": "22:00" }] },
+      { "date": "2026-06-12", "available": false },
+      { "date": "2026-06-14", "available": true, "timeSlots": [{ "start": "14:00", "end": "22:00" }] }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "鈴木",
+    "color": "#10b981",
+    "schedule": [
+      { "date": "2026-06-05", "available": true, "timeSlots": [{ "start": "12:00", "end": "20:00" }] },
+      { "date": "2026-06-06", "available": true, "timeSlots": [{ "start": "16:00", "end": "22:00" }] },
+      { "date": "2026-06-07", "available": true, "timeSlots": [{ "start": "18:00", "end": "22:00" }] },
+      { "date": "2026-06-08", "available": false },
+      { "date": "2026-06-12", "available": true, "timeSlots": [{ "start": "10:00", "end": "18:00" }] },
+      { "date": "2026-06-14", "available": true, "timeSlots": [{ "start": "12:00", "end": "22:00" }] }
+    ]
+  }
+]

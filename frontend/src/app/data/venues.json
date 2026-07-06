@@ -1,0 +1,80 @@
+[
+  {
+    "id": "1",
+    "name": "カフェ・ドゥ・パリ",
+    "category": "カフェ",
+    "crowdLevel": "low",
+    "requiresReservation": false,
+    "indoor": true,
+    "rating": 4.5,
+    "openingHours": {
+      "start": "08:00",
+      "end": "22:00"
+    }
+  },
+  {
+    "id": "2",
+    "name": "焼肉 牛太郎",
+    "category": "焼肉",
+    "crowdLevel": "high",
+    "requiresReservation": true,
+    "indoor": true,
+    "rating": 4.7,
+    "openingHours": {
+      "start": "17:00",
+      "end": "23:00"
+    }
+  },
+  {
+    "id": "3",
+    "name": "イタリアン トラットリア",
+    "category": "イタリアン",
+    "crowdLevel": "medium",
+    "requiresReservation": true,
+    "indoor": true,
+    "rating": 4.3,
+    "openingHours": {
+      "start": "11:00",
+      "end": "22:00"
+    }
+  },
+  {
+    "id": "4",
+    "name": "公園カフェ テラス",
+    "category": "カフェ",
+    "crowdLevel": "low",
+    "requiresReservation": false,
+    "indoor": false,
+    "rating": 4.2,
+    "openingHours": {
+      "start": "10:00",
+      "end": "18:00"
+    }
+  },
+  {
+    "id": "5",
+    "name": "ショッピングモール フードコート",
+    "category": "フードコート",
+    "crowdLevel": "medium",
+    "requiresReservation": false,
+    "indoor": true,
+    "rating": 3.8,
+    "openingHours": {
+      "start": "10:00",
+      "end": "21:00"
+    }
+  },
+  {
+    "id": "6",
+    "name": "屋上ビアガーデン",
+    "category": "ビアガーデン",
+    "crowdLevel": "medium",
+    "requiresReservation": true,
+    "indoor": false,
+    "rating": 4.4,
+    "openingHours": {
+      "start": "17:00",
+      "end": "23:00"
+    }
+  }
+]
