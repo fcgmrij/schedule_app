@@ -5,6 +5,16 @@ import { cors } from "hono/cors";
 import { createClient } from "./db/client";
 
 const app = new Hono();
+
+app.get("/", (c) => {
+  return c.json({ message: "backend root ok" });
+});
+
+app.get("/api/health", (c) => {
+  return c.json({ message: "backend api ok" });
+});
+
+
 app.use("*", cors());
 
 app.get("/", (c) => {
