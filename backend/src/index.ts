@@ -181,9 +181,4 @@ app.get("/api/user/list", async (c) => {
 
 app.route("/api/user", userRoutes);
 
-serve({
-  fetch: app.fetch,
-  port: 8080,
-});
-
-console.log(`Hono server is running on http://localhost:8080`);
+export default app;
