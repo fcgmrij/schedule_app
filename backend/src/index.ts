@@ -36,4 +36,8 @@ app.get("/api/user/list", async (c) => {
   }
 });
 
+app.get("/api/user/test", (c) => {
+  return c.json({ message: "user test ok" });
+});
+
 export default app;
