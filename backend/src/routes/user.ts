@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { createClient } from "../db/client";
+import { createClient } from "../db/client.js";
 
 const userRoutes = new Hono();
 

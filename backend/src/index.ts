@@ -1,14 +1,9 @@
 import userRoutes from "./routes/user.js";
 import { Hono } from "hono";
-import { serve } from "@hono/node-server";
 import { cors } from "hono/cors";
 import { createClient } from "./db/client.js";
 
 const app = new Hono();
-
-app.get("/", (c) => {
-  return c.json({ message: "backend root ok" });
-});
 
 app.get("/api/health", (c) => {
   return c.json({ message: "backend api ok" });
