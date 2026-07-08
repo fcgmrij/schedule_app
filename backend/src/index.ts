@@ -9,7 +9,7 @@ const allowedOrigins = [
   "https://schedule-app-freiji.vercel.app",
 ];
 
-app.use("*", async (c, next) => {
+app.use("/api/*", async (c, next) => {
   const origin = c.req.header("Origin");
 
   if (origin && (allowedOrigins.includes(origin) || origin.endsWith(".vercel.app"))) {
