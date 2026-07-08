@@ -5,7 +5,16 @@ import { createClient } from "./db/client.js";
 
 const app = new Hono();
 
-app.use("*", cors());
+app.use(
+  "*",
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://schedule-app-frontend-alpha.vercel.app",
+    ],
+  })
+);
 
 app.get("/", (c) => {
   return c.json({ message: "backend root ok" });
