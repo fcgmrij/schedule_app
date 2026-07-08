@@ -15,22 +15,19 @@ app.get("/api/health", (c) => {
   return c.json({ message: "backend api ok" });
 });
 
-app.get("/api/user/list", async (c) => {
+app.get("/user/list", async (c) => {
   const client = createClient();
   try {
     await client.connect();
     const result = await client.query("SELECT * FROM users ORDER BY id");
     return c.json(result.rows);
-  } 
-  catch (error) {
+  } catch (error) {
     console.error(error);
-
     return c.json({
       message: "user list failed",
       error: String(error),
     }, 500);
-  }
-  finally {
+  } finally {
     await client.end();
   }
 });
