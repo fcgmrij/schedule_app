@@ -12,10 +12,11 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "https://schedule-app-frontend-alpha.vercel.app",
+      "https://schedule-app-frontend-alpha.vercel.app",
+      "*"
     ],
   })
-);
-
+)
 app.get("/", (c) => {
   return c.json({ message: "backend root ok" });
 });
