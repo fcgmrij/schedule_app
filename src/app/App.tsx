@@ -97,7 +97,7 @@ export default function App() {
   const handleAddMember = async () => {
     if (!newMemberName.trim()) return;
     const colors = ["#3b82f6", "#ef4444", "#10b981", "#8b5cf6", "#f97316"];
-    await fetch('${API_URL}/api/user/create', {
+    await fetch(`${API_URL}/api/user/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -145,7 +145,7 @@ export default function App() {
       alert("空いている日付と時間帯を入力してください");
       return;
     }
-    await fetch('${API_URL}/api/schedule/create', {
+    await fetch(`${API_URL}/api/schedule/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
