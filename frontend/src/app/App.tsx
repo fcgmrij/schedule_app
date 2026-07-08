@@ -12,16 +12,35 @@ import {
 } from "./types";
 
 export default function App() {
-  const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL || "https://schedule-app-freiji.vercel.app";
+
+  const fetchJson = async (path: string, init?: RequestInit) => {
+    const res = await fetch(`${API_URL}${path}`, init);
+    const text = await res.text();
+
+    if (!res.ok) {
+      throw new Error(`Request failed: ${res.status} ${text || res.statusText}`);
+    }
+
+    if (!text) {
+      return [];
+    }
+
+    try {
+      return JSON.parse(text);
+    } catch {
+      return text;
+    }
+  };
 
   const [members, setMembers] =useState<Member[]>([]);
   const [dbSchedules, setDbSchedules] = useState<DbSchedule[]>([]);
 
   useEffect(() => {
-    fetch(`${API_URL}/api/user/list`)
-      .then((res) => res.json())
-      .then((data) => {
-        const members = data.map((user: any) => ({
+    const loadMembers = async () => {
+      try {
+        const data = await fetchJson("/api/user/list");
+        const members = (Array.isArray(data) ? data : []).map((user: any) => ({
           id: String(user.id),
           name: user.name,
           color: "#3b82f6",
@@ -29,34 +48,35 @@ export default function App() {
         }));
 
         setMembers(members);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("メンバー取得失敗", error);
-      });
-  }, []);
+      }
+    };
+
+    loadMembers();
+  }, [API_URL]);
 
   const fetchSchedules = async () => {
     try {
-      const res = await fetch('${API_URL}/api/schedule/get/1');
-      const data = await res.json();
-      setDbSchedules(data);
+      const data = await fetchJson("/api/schedule/get/1");
+      setDbSchedules(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("予定取得失敗", error);
     }
   };
   useEffect(() => {
     fetchSchedules();
-  }, []);
+  }, [API_URL]);
 
 
   const [newMemberName, setNewMemberName] = useState("");
   const [selectedMemberId, setSelectedMemberId] = useState("");
   useEffect(() => {
     if (!selectedMemberId) return;
-    fetch(`${API_URL}/api/schedule/get/${selectedMemberId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        const convertedSchedules = data.map((schedule: DbSchedule) => ({
+    const loadMemberSchedules = async () => {
+      try {
+        const data = await fetchJson(`/api/schedule/get/${selectedMemberId}`);
+        const convertedSchedules = (Array.isArray(data) ? data : []).map((schedule: DbSchedule) => ({
           id: schedule.id,
           date: schedule.date.slice(0, 10),
           available: true,
@@ -77,11 +97,13 @@ export default function App() {
               : member
           )
         );
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("選択メンバーの予定取得失敗", error);
-      });
-  }, [selectedMemberId]);
+      }
+    };
+
+    loadMemberSchedules();
+  }, [API_URL, selectedMemberId]);
 
   const [memberDate, setMemberDate] = useState("");
 
@@ -98,7 +120,7 @@ export default function App() {
   const handleAddMember = async () => {
     if (!newMemberName.trim()) return;
     const colors = ["#3b82f6", "#ef4444", "#10b981", "#8b5cf6", "#f97316"];
-    await fetch('${API_URL}/api/user/list',{
+    await fetchJson("/api/user/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -130,7 +152,7 @@ export default function App() {
   };
 
   const handleDeleteMember = async (id: string) => {
-    await fetch(`${API_URL}/api/user/delete?user_id=${id}`, {
+    await fetchJson(`/api/user/delete?user_id=${id}`, {
       method: "DELETE",
     });
 
@@ -146,7 +168,7 @@ export default function App() {
       alert("空いている日付と時間帯を入力してください");
       return;
     }
-    await fetch("${API_URL}/api/schedule/create", {
+    await fetchJson("/api/schedule/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -196,7 +218,7 @@ export default function App() {
   };
 
   const handleDeleteSchedule = async (scheduleId: number) => {
-    await fetch(`${API_URL}/api/schedule/delete?schedule_id=${scheduleId}`, {
+    await fetchJson(`/api/schedule/delete?schedule_id=${scheduleId}`, {
       method: "DELETE",
     });
 

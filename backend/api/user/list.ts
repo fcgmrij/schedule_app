@@ -1,25 +1,9 @@
-import { createClient } from "../../src/db/client.js";
+import app from "../../src/index.js";
 
-export async function GET() {
-  const client = createClient();
+export async function GET(request: Request) {
+  return app.fetch(request);
+}
 
-  try {
-    await client.connect();
-
-    const result = await client.query("SELECT * FROM users ORDER BY id");
-
-    return Response.json(result.rows);
-  } catch (error) {
-    console.error(error);
-
-    return Response.json(
-      {
-        message: "user list failed",
-        error: String(error),
-      },
-      { status: 500 }
-    );
-  } finally {
-    await client.end();
-  }
+export async function OPTIONS(request: Request) {
+  return app.fetch(request);
 }
