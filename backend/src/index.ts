@@ -1,8 +1,8 @@
-import userRoutes from "./routes/user";
+import userRoutes from "./routes/user.js";
 import { Hono } from "hono";
 import { serve } from "@hono/node-server";
 import { cors } from "hono/cors";
-import { createClient } from "./db/client";
+import { createClient } from "./db/client.js";
 
 const app = new Hono();
 
