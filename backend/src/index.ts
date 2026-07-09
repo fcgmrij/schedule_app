@@ -3,8 +3,6 @@ import { createClient } from "./db/client.js";
 
 const app = new Hono();
  
-
- 
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
