@@ -2,11 +2,16 @@ import { Hono } from "hono";
 import { createClient } from "./db/client.js";
 
 const app = new Hono();
+ 
+
+ 
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "https://schedule-app-frontend-alpha.vercel.app",
   "https://schedule-app-freiji.vercel.app",
+  "*",
+   
 ];
 
 app.use("/api/*", async (c, next) => {
@@ -25,7 +30,7 @@ app.use("/api/*", async (c, next) => {
   await next();
 });
 
-app.options("*", (c) => {
+app.options("/api/*", (c) => {
   return new Response(null, { status: 204 });
 });
 
@@ -81,3 +86,4 @@ app.get("/api/user/test", (c) => {
 });
 
 export default app;
+
