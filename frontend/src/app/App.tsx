@@ -12,7 +12,7 @@ import {
 } from "./types";
 
 export default function App() {
-  const API_URL = import.meta.env.VITE_API_URL || "https://schedule-app-freiji.vercel.app";
+  const API_URL = import.meta.env.VITE_API_URL || "";
 
   const fetchJson = async (path: string, init?: RequestInit) => {
     const res = await fetch(`${API_URL}${path}`, init);
